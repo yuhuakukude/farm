@@ -14,6 +14,8 @@ import menu from '../../assets/images/menu.png'
 // import Lang from './Lang'
 import { scrollToElement } from '../../utils'
 import logo from 'assets/images/logo.png'
+import logo1 from 'assets/images/logo1.png'
+import farm from 'assets/images/farm.png'
 // import { useI18n } from 'react-simple-i18n'
 
 interface TabContent {
@@ -21,6 +23,7 @@ interface TabContent {
   route?: string
   link?: string
   id?: string
+  image: string
   titleContent?: JSX.Element
 }
 
@@ -31,8 +34,8 @@ interface Tab extends TabContent {
 export function useTabs(): Tab[] {
   // const { t } = useI18n()
   return [
-    { title: 'Home', route: routes.home },
-    { title: '农场', route: routes.farms }
+    { title: '简介', route: routes.home, image: logo1 },
+    { title: '农场', route: routes.farms, image: farm }
     // { title: t('marketplace'), route: routes.Marketplace, id: 'marketplace' },
     // { title: t('roadmap.title'), route: routes.Roadmap, id: 'roadmap' },
     // { title: t('tokenomics1'), route: routes.Tokenomics, id: 'tokenomics' },
