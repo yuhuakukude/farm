@@ -11,7 +11,7 @@ import { langData } from '../langs/lang'
 import Home from './home'
 import bodyBg from 'assets/images/bodybg.png'
 import { routes } from 'constants/routes'
-import ComingSoon from './ComingSoon'
+import Farms from '../pages/farms'
 // import Footer from 'components/Footer'
 
 const AppWrapper = styled('div')(({ theme }) => ({
@@ -65,7 +65,7 @@ export default function App() {
                 <Web3ReactManager>
                   <Switch>
                     <Route exact strict path={routes.home} component={Home} />
-                    <Route exact strict path={routes.farms} component={ComingSoon} />
+                    <Route exact strict path={routes.farms} component={Farms} />
                     <Route path="/">
                       <Redirect to="/home" />
                     </Route>
