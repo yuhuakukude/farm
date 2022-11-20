@@ -113,7 +113,7 @@ export const USDT: { [chainId in ChainId]: Token } = {
   [ChainId.BSCTEST]: new Token(ChainId.BSCTEST, USDT_ADDRESS, 18, 'USDT', 'USDT')
 }
 
-export const RAM: { [chainId in ChainId]: Token } = {
-  [ChainId.BSC]: new Token(ChainId.BSC, '0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D', 18, 'MATTER', 'Matter'),
-  [ChainId.BSCTEST]: new Token(ChainId.BSCTEST, RAM_ADDRESS, 18, 'RAM', 'RAM')
+export const FARM_ADDRESS: { [chainId in ChainId]: string } = {
+  [ChainId.BSC]: '0x1954A0c799E537C32229C5600C3892eFb2413a19',
+  [ChainId.BSCTEST]: '0x1954A0c799E537C32229C5600C3892eFb2413a19'
 }

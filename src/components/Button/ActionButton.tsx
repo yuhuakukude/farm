@@ -40,11 +40,17 @@ export default function ActionButton({
           )}
         </OutlineButton>
       ) : success ? (
-        <Button disabled height={height} width={width}>
+        <Button classname="global-box-shadow1" disabled height={height} width={width}>
           <Typography variant="inherit">{successText ?? actionText}</Typography>
         </Button>
       ) : (
-        <Button height={height} width={width} onClick={onAction} disabled={disableAction}>
+        <Button
+          classname="global-box-shadow1"
+          height={height}
+          width={width}
+          onClick={onAction}
+          disabled={disableAction}
+        >
           {actionText}
         </Button>
       )}

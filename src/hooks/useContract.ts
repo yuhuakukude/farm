@@ -12,8 +12,8 @@ import { useActiveWeb3React } from './index'
 import { ChainId } from '../constants/chain'
 import { getOtherNetworkLibrary } from 'connectors/MultiNetworkConnector'
 import ERC721_ABI from '../constants/abis/erc721.json'
-import RAM_ABI from '../constants/abis/ram.json'
-import { RAM_ADDRESS } from '../constants'
+import FARM_ABI from '../constants/abis/farm.json'
+import { FARM_ADDRESS } from '../constants'
 
 // returns null on errors
 function useContract(
@@ -90,18 +90,14 @@ export function useMulticallContract(queryChainId?: ChainId): Contract | null {
 }
 
 export function useSocksController(): Contract | null {
-  const { chainId } = useActiveWeb3React()
-  return useContract(
-    chainId === ChainId.MAINNET ? '0x65770b5283117639760beA3F867b69b3697a91dd' : undefined,
-    UNISOCKS_ABI,
-    false
-  )
+  return useContract(undefined, UNISOCKS_ABI, false)
 }
 
 export function useNFTContract(address: string | undefined): Contract | null {
   return useContract(address, ERC721_ABI, true)
 }
 
-export function useRAMContract(): Contract | null {
-  return useContract(RAM_ADDRESS, RAM_ABI, true)
+export function useFarmContract(): Contract | null {
+  const { chainId } = useActiveWeb3React()
+  return useContract(FARM_ADDRESS[chainId ?? 56], FARM_ABI, true)
 }

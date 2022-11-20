@@ -1,6 +1,7 @@
 import { ChainId } from '../../constants/chain'
 import farms from './farms.json'
 export interface FARM {
+  index: string
   lpAddress: string
   token0Address: string
   token1Address: string

@@ -5,7 +5,7 @@ import { WalletConnectConnector } from '@web3-react/walletconnect-connector'
 import { isMobile } from 'react-device-detect'
 import { Typography, Box } from '@mui/material'
 import MetamaskIcon from 'assets/walletIcon/metamask.png'
-import { fortmatic, injected, portis } from 'connectors'
+import { fortmatic, injected } from 'connectors'
 import { OVERLAY_READY } from 'connectors/Fortmatic'
 import { SUPPORTED_WALLETS } from 'constants/index'
 import usePrevious from 'hooks/usePrevious'
@@ -113,29 +113,6 @@ export default function WalletModal({
     return Object.keys(SUPPORTED_WALLETS).map(key => {
       const option = SUPPORTED_WALLETS[key]
       // check for mobile options
-      if (isMobile) {
-        //disable portis on mobile for now
-        if (option.connector === portis) {
-          return null
-        }
-
-        if (!window.web3 && !window.ethereum && option.mobile) {
-          return (
-            <Option
-              onClick={() => {
-                option.connector !== connector && !option.href && tryActivation(option.connector)
-              }}
-              id={`connect-${key}`}
-              key={key}
-              active={option.connector && option.connector === connector}
-              link={option.href}
-              header={option.name}
-              icon={require('../../../assets/walletIcon/' + option.iconName)?.default}
-            />
-          )
-        }
-        return null
-      }
 
       // overwrite injected when needed
       if (option.connector === injected) {
