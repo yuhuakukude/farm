@@ -16,7 +16,6 @@
     "token0Name": "PEA",
     "token1Name": "USTX",
     "weights": "400"
-
   },
   {
     "index": "2",
@@ -26,6 +25,5 @@
     "token0Name": "WTX",
     "token1Name": "USTX",
     "weights": "100"
-
   }
 ]
