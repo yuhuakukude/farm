@@ -30,10 +30,13 @@ import detail from 'assets/images/detail.png'
 import useBreakpoint from 'hooks/useBreakpoint'
 import Button from 'components/Button/Button'
 import { ExternalLink } from '../../theme/components'
+import useCopyClipboard from '../../hooks/useCopyClipboard'
 
 export default function Home() {
   const isSmDown = useBreakpoint('sm')
   const theme = useTheme()
+  const [isCopied, setCopied] = useCopyClipboard()
+
   return (
     <Box
       sx={{
@@ -110,6 +113,13 @@ export default function Home() {
               <ChainInfo />
               <Box display={'flex'} justifyContent="center" mt={20}>
                 <Button
+                  disabled={isCopied}
+                  onClick={() => {
+                    setCopied(`网络名称：telegramx,
+    新增 RPC URL:  https://tx.telegramx.space,
+    链 ID（自动弹出):  8989,
+    货币符号:  TX`)
+                  }}
                   style={{
                     height: 33,
                     width: '50%'
