@@ -35,7 +35,6 @@ import useCopyClipboard from '../../hooks/useCopyClipboard'
 export default function Home() {
   const isSmDown = useBreakpoint('sm')
   const theme = useTheme()
-  const [isCopied, setCopied] = useCopyClipboard()
 
   return (
     <Box
@@ -111,24 +110,6 @@ export default function Home() {
             >
               <Typography sx={{ fontSize: { sx: 20, sm: 30 }, fontWeight: 500 }}>配置TX公链参数</Typography>
               <ChainInfo />
-              <Box display={'flex'} justifyContent="center" mt={20}>
-                <Button
-                  disabled={isCopied}
-                  onClick={() => {
-                    setCopied(`网络名称：telegramx,
-    新增 RPC URL:  https://tx.telegramx.space,
-    链 ID（自动弹出):  8989,
-    货币符号:  TX`)
-                  }}
-                  style={{
-                    height: 33,
-                    width: '50%'
-                  }}
-                  classname="global-box-shadow"
-                >
-                  复制
-                </Button>
-              </Box>
             </Box>
           </Box>
 
@@ -363,24 +344,40 @@ function RoadMap() {
 }
 
 function ChainInfo() {
+  const [isCopied, setCopied] = useCopyClipboard()
+  console.log(isCopied)
   const theme = useTheme()
   const list = [
-    '网络名称：telegramx',
-    '新增 RPC URL:  https://tx.telegramx.space',
-    '链 ID（自动弹出):  8989',
-    '货币符号:  TX'
+    { title: '网络名称：telegramx', value: 'telegramx' },
+    { title: '新增 RPC URL:  https://tx.telegramx.space', value: 'https://tx.telegramx.space' },
+    { title: '链 ID（自动弹出):  8989', value: '8989' },
+    { title: '货币符号:  TX', value: 'TX' }
   ]
   return (
     <Stack mt={20} spacing={5}>
       {list.map(item => (
-        <Box key={item} display="flex" alignItems={'center'}>
+        <Box key={item.title} display="flex" alignItems={'center'}>
           <Image src={checkout} />
           <Typography
             sx={{ fontSize: { sx: 16, sm: 26 }, fontWeight: 500, color: theme.palette.text.secondary }}
             ml={6}
           >
-            {item}
+            {item.title}
           </Typography>
+          <Button
+            onClick={() => {
+              setCopied(item.value)
+            }}
+            style={{
+              height: 33,
+              width: 60,
+              marginLeft: 'auto',
+              marginRight: '0'
+            }}
+            classname="global-box-shadow"
+          >
+            复制
+          </Button>
         </Box>
       ))}
     </Stack>

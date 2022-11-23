@@ -38,6 +38,7 @@ function useTVLs() {
   const pairAddress = farms.map(({ lpAddress }) => lpAddress)
   const WUContract = library ? getContract(BASE_PAIR_ADDRESS, LPABI, library) : undefined
   const WUReserve = useSingleCallResult(WUContract, 'getReserves')?.result
+  const WUTotalSupply = useSingleCallResult(WUContract, 'totalSupply')?.result
   const reserveU = USTX.toLowerCase() < WTX.toLowerCase() ? WUReserve?._reserve0 : WUReserve?._reserve1
   const reserveE = USTX.toLowerCase() > WTX.toLowerCase() ? WUReserve?._reserve0 : WUReserve?._reserve1
   const reserves = useMultipleContractSingleData(pairAddress, LP_INTERFACE, 'getReserves')
@@ -62,16 +63,16 @@ function useTVLs() {
       const total = totalSupply?.[index]?.result?.[0]
       const reserve0 = reserves?.[index]?.result?._reserve0
       const reserve1 = reserves?.[index]?.result?._reserve1
-      if (!balance || !totalSupply || !reserve0 || !reserve1) {
+      if (!balance || !totalSupply || !reserve0 || !reserve1 || !WUTotalSupply) {
         return undefined
       }
-      if (token0.toLowerCase() === '0x58a12868Eec1ba590cB289472b871029CC77FB7c'.toLowerCase()) {
+      if (token0.toLowerCase() === USTX.toLowerCase()) {
         return JSBI.divide(
           JSBI.multiply(JSBI.BigInt(balance), JSBI.multiply(JSBI.BigInt(reserve0), JSBI.BigInt('2'))),
           JSBI.BigInt(total)
         ).toString()
       }
-      if (token1.toLowerCase() === '0x58a12868Eec1ba590cB289472b871029CC77FB7c'.toLowerCase()) {
+      if (token1.toLowerCase() === USTX.toLowerCase()) {
         return JSBI.divide(
           JSBI.multiply(JSBI.BigInt(balance), JSBI.multiply(JSBI.BigInt(reserve1), JSBI.BigInt('2'))),
           JSBI.BigInt(total)
@@ -80,24 +81,24 @@ function useTVLs() {
       if (token0.toLowerCase() === WTX.toLowerCase()) {
         return JSBI.divide(
           JSBI.multiply(
-            JSBI.divide(JSBI.multiply(JSBI.BigInt(balance), JSBI.BigInt(reserve0)), JSBI.BigInt(total)),
-            JSBI.BigInt(reserveE)
+            JSBI.multiply(JSBI.multiply(JSBI.BigInt(balance), JSBI.BigInt(reserve0)), JSBI.BigInt(reserveU)),
+            JSBI.BigInt('2')
           ),
-          JSBI.BigInt(reserveU)
+          JSBI.multiply(JSBI.BigInt(reserveE), JSBI.BigInt(total))
         )
       }
       if (token1.toLowerCase() === WTX.toLowerCase()) {
         return JSBI.divide(
           JSBI.multiply(
-            JSBI.divide(JSBI.multiply(JSBI.BigInt(balance), JSBI.BigInt(reserve1)), JSBI.BigInt(total)),
-            JSBI.BigInt(reserveE)
+            JSBI.multiply(JSBI.multiply(JSBI.BigInt(balance), JSBI.BigInt(reserve1)), JSBI.BigInt(reserveU)),
+            JSBI.BigInt('2')
           ),
-          JSBI.BigInt(reserveU)
+          JSBI.multiply(JSBI.BigInt(reserveE), JSBI.BigInt(total))
         )
       }
       return undefined
     })
-  }, [balances, reserveE, reserveU, reserves, totalSupply])
+  }, [WUTotalSupply, balances, reserveE, reserveU, reserves, totalSupply])
 }
 
 export { useTVL, useTVLs }
