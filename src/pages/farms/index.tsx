@@ -20,11 +20,13 @@ import { useToken } from '../../state/wallet/hooks'
 import { useActiveWeb3React } from '../../hooks'
 import { FARM_ADDRESS } from '../../constants'
 import ActionButton from '../../components/Button/ActionButton'
-import { TokenAmount } from '../../constants/token'
+import { CurrencyAmount, TokenAmount } from '../../constants/token'
 import useModal from '../../hooks/useModal'
 import TransactionPendingModal from '../../components/Modal/TransactionModals/TransactionPendingModal'
 import TransactionSubmittedModal from '../../components/Modal/TransactionModals/TransactiontionSubmittedModal'
 import MessageBox from '../../components/Modal/TransactionModals/MessageBox'
+import { ExternalLink } from '../../theme/components'
+import { useTVL } from '../../hooks/useLiquidity'
 
 // const Wrapper = styled(Box)`
 //   border: 2px solid #191919;
@@ -160,9 +162,17 @@ function PoolBox({ farm }: { farm: FARM }) {
   const [openStake, setOpenStake] = useState(false)
   const [openWithdraw, setOpenWithdraw] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
-  const { pendingRewards, depositedAmount } = useUserInfo(farm)
+  const { pendingRewards, depositedAmount, claimedAmount } = useUserInfo(farm)
   const { showModal, hideModal } = useModal()
   const { claim } = useAuctions()
+  const token0Address = farm.token0Address.toLowerCase() < farm.token1Address ? farm.token0Address : farm.token1Address
+  const token1Address = farm.token0Address.toLowerCase() < farm.token1Address ? farm.token1Address : farm.token0Address
+  const { tvl, token0Amount, token1Amount } = useTVL(
+    depositedAmount ?? '0',
+    farm.lpAddress,
+    token0Address,
+    token1Address
+  )
   const lpToken = useToken(farm.lpAddress, chainId)
   const [depositTyped] = useState('1')
   const depositAmount = tryParseAmount(depositTyped, lpToken ?? undefined)
@@ -225,7 +235,7 @@ function PoolBox({ farm }: { farm: FARM }) {
             <Box display={'flex'} alignItems="center">
               <Box mr={isSmDown ? 70 : 100}>
                 <Text1>已赚取</Text1>
-                <Text2 mt={10}>--</Text2>
+                <Text2 mt={10}>{claimedAmount ? CurrencyAmount.ether(claimedAmount).toSignificant() : '--'}</Text2>
               </Box>
               <Box>
                 <Text1>APR</Text1>
@@ -287,18 +297,19 @@ function PoolBox({ farm }: { farm: FARM }) {
                 </Button>
               </StyledBetweenCenter>
             </OutBox>
-
-            <OutBox>
-              <Text1 mb={isSmDown ? 15 : 30}>启用农场</Text1>
-              <ActionButton
-                actionText={approvalState === ApprovalState.APPROVED ? '已启用' : '启用'}
-                pendingText={'启用中'}
-                pending={approvalState === ApprovalState.PENDING}
-                disableAction={approvalState !== ApprovalState.NOT_APPROVED || !account}
-                height={isSmDown ? '40px' : '62px'}
-                onAction={approveCallback}
-              />
-            </OutBox>
+            {approvalState !== ApprovalState.APPROVED ? (
+              <OutBox>
+                <Text1 mb={isSmDown ? 15 : 30}>启用农场</Text1>
+                <ActionButton
+                  actionText={'启用'}
+                  pendingText={'启用中'}
+                  pending={approvalState === ApprovalState.PENDING}
+                  disableAction={approvalState !== ApprovalState.NOT_APPROVED || !account}
+                  height={isSmDown ? '40px' : '62px'}
+                  onAction={approveCallback}
+                />
+              </OutBox>
+            ) : null}
 
             {!depositAmount || depositedAmount === '0' ? (
               <OutBox>
@@ -330,8 +341,14 @@ function PoolBox({ farm }: { farm: FARM }) {
                 </Text2>
                 <StyledBetweenCenter mt={10}>
                   <Box>
-                    <Text1>--USD</Text1>
-                    <Text1>--USDT</Text1>
+                    <Text1>
+                      {token0Amount ? CurrencyAmount.ether(token0Amount).toSignificant() : '--'}
+                      {farm.token0Address < farm.token1Address ? farm.token0Name : farm.token1Name}
+                    </Text1>
+                    <Text1>
+                      {token1Amount ? CurrencyAmount.ether(token1Amount).toSignificant() : '--'}
+                      {farm.token0Address > farm.token1Address ? farm.token0Name : farm.token1Name}
+                    </Text1>
                   </Box>
                   <Stack direction={'row'} spacing={10}>
                     <Image
@@ -362,23 +379,28 @@ function PoolBox({ farm }: { farm: FARM }) {
               </StyledBetweenCenter>
               <StyledBetweenCenter>
                 <Text2>权重</Text2>
-                <Text2>--X</Text2>
+                <Text2>{farm.weights}X</Text2>
               </StyledBetweenCenter>
               <StyledBetweenCenter>
                 <Text2>流动性</Text2>
-                <Text2>$--</Text2>
+                <Text2>${tvl ? CurrencyAmount.ether(tvl).toSignificant() : '--'}</Text2>
               </StyledBetweenCenter>
-
-              <StyledLink>
-                获取PEA-USTX LP
-                <Image src={share} width={isSmDown ? 16 : 24} style={{ marginLeft: 5 }} />
-              </StyledLink>
-              <StyledLink>
-                查看合约 <Image src={share} width={isSmDown ? 16 : 24} style={{ marginLeft: 5 }} />
-              </StyledLink>
-              <StyledLink>
-                查看代币对信息 <Image src={share} width={isSmDown ? 16 : 24} style={{ marginLeft: 5 }} />
-              </StyledLink>
+              <ExternalLink href={`https://swap.telegramx.link/#/add/${farm.token0Address}/${farm.token1Address}`}>
+                <StyledLink>
+                  获取PEA-USTX LP
+                  <Image src={share} width={isSmDown ? 16 : 24} style={{ marginLeft: 5 }} />
+                </StyledLink>
+              </ExternalLink>
+              <ExternalLink href={`https://www.telegramx.link/address/${farm.lpAddress}`}>
+                <StyledLink>
+                  查看合约 <Image src={share} width={isSmDown ? 16 : 24} style={{ marginLeft: 5 }} />
+                </StyledLink>
+              </ExternalLink>
+              <ExternalLink href={`https://www.telegramx.link/address/${farm.lpAddress}`}>
+                <StyledLink>
+                  查看代币对信息 <Image src={share} width={isSmDown ? 16 : 24} style={{ marginLeft: 5 }} />
+                </StyledLink>
+              </ExternalLink>
             </Stack>
           </Stack>
         </Box>

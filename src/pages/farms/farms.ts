@@ -7,6 +7,7 @@ export interface FARM {
   token1Address: string
   token0Name: string
   token1Name: string
+  weights: string
 }
 export const FARMS: { [chainId in ChainId]: FARM[] } = {
   [ChainId.TX]: farms

@@ -5,7 +5,8 @@
     "token0Address": "0xbfC7439df802D3F941cFc20539F7130cDb06e64b",
     "token1Address": "0x68909Fea4ca0e80247da6b974c10f225696e00D6",
     "token0Name": "PEA",
-    "token1Name": "WTX"
+    "token1Name": "WTX",
+    "weights": "1"
   },
   {
     "index": "1",
@@ -13,7 +14,9 @@
     "token0Address": "0xbfC7439df802D3F941cFc20539F7130cDb06e64b",
     "token1Address": "0x58a12868Eec1ba590cB289472b871029CC77FB7c",
     "token0Name": "PEA",
-    "token1Name": "USTX"
+    "token1Name": "USTX",
+    "weights": "1"
+
   },
   {
     "index": "2",
@@ -21,6 +24,8 @@
     "token0Address": "0x68909Fea4ca0e80247da6b974c10f225696e00D6",
     "token1Address": "0x58a12868Eec1ba590cB289472b871029CC77FB7c",
     "token0Name": "WTX",
-    "token1Name": "USTX"
+    "token1Name": "USTX",
+    "weights": "2"
+
   }
 ]

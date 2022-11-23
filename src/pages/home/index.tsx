@@ -30,13 +30,10 @@ import detail from 'assets/images/detail.png'
 import useBreakpoint from 'hooks/useBreakpoint'
 import Button from 'components/Button/Button'
 import { ExternalLink } from '../../theme/components'
-import { useETHBalances } from '../../state/wallet/hooks'
 
 export default function Home() {
   const isSmDown = useBreakpoint('sm')
   const theme = useTheme()
-  const ethBalances = useETHBalances(['0x62214327CB0CB4041F84e6B7e6FeC6418af26F34'])
-  console.log('ethBalances', ethBalances)
   return (
     <Box
       sx={{

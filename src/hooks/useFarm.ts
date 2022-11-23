@@ -28,6 +28,7 @@ function useUserInfo(farm: FARM) {
   const res = userRes.result
   return {
     depositedAmount: res ? res.amount.toString() : undefined,
+    claimedAmount: res ? res.claimedAmount.toString() : undefined,
     pendingRewards: rewardsRes.result ? rewardsRes.result?.[0].toString() : undefined
   }
 }
