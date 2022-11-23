@@ -68,12 +68,8 @@ interface ChainObject {
 }
 
 const chains: ChainObject = {
-  [ChainId.BSCTEST]: {
-    link: 'https://testnet.bscscan.com',
-    builder: explorers.etherscan
-  },
-  [ChainId.BSC]: {
-    link: 'https://bscscan.com',
+  [ChainId.TX]: {
+    link: 'https://www.telegramx.link/',
     builder: explorers.etherscan
   }
 }

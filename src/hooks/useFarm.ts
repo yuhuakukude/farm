@@ -10,7 +10,7 @@ import { useSingleCallResult } from '../state/multicall/hooks'
 
 function useFarmInfos() {
   const { chainId } = useActiveWeb3React()
-  const farms = FARMS[chainId ?? 56]
+  const farms = FARMS[chainId ?? 8989]
   return farms.map(farm => {
     return farm
   })
@@ -68,7 +68,7 @@ export function useAuctions() {
       if (!amount) throw new Error('none amount')
 
       const args = [amount.token.address, amount.raw.toString()]
-      const method = 'deposit'
+      const method = 'withdraw'
       console.log('🚀 ~ file: useBuyBong.ts ~ line 18 ~ args', args, method)
       return contract.estimateGas[method](...args, { from: account }).then(estimatedGasLimit => {
         return contract[method](...args, {

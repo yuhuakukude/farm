@@ -59,15 +59,7 @@ export function useTokenContract(tokenAddress?: string, withSignerIfPossible?: b
 }
 
 export function useENSRegistrarContract(withSignerIfPossible?: boolean): Contract | null {
-  const { chainId } = useActiveWeb3React()
   let address: string | undefined
-  if (chainId) {
-    switch (chainId) {
-      case ChainId.BSCTEST:
-        address = '0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e'
-        break
-    }
-  }
   return useContract(address, ENS_ABI, withSignerIfPossible)
 }
 
@@ -99,5 +91,5 @@ export function useNFTContract(address: string | undefined): Contract | null {
 
 export function useFarmContract(): Contract | null {
   const { chainId } = useActiveWeb3React()
-  return useContract(FARM_ADDRESS[chainId ?? 56], FARM_ABI, true)
+  return useContract(FARM_ADDRESS[chainId ?? 8989], FARM_ABI, true)
 }

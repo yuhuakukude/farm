@@ -6,8 +6,8 @@ import mode from 'assets/images/mode.png'
 import howBuy from 'assets/images/how_buy.png'
 import step1 from 'assets/images/step1.png'
 import step2 from 'assets/images/step2.png'
-import coin2 from 'assets/images/coin2.png'
-import coin3 from 'assets/images/coin3.png'
+//import coin2 from 'assets/images/coin2.png'
+//import coin3 from 'assets/images/coin3.png'
 import arrow_line from 'assets/images/arrow_line.png'
 import roadmap from 'assets/images/role_line.png'
 import checkout from 'assets/images/checkout.png'
@@ -17,7 +17,7 @@ import team_intr from 'assets/images/team_intr.png'
 import person_toggle from 'assets/images/person_toggle.png'
 import person from 'assets/images/person.png'
 import coin_arr from 'assets/images/coin_arr.png'
-import gov from 'assets/images/gov.png'
+//import gov from 'assets/images/gov.png'
 import bg1 from 'assets/images/bg1.png'
 import twitter from 'assets/images/twitter.png'
 import tg from 'assets/images/tg.png'
@@ -29,10 +29,14 @@ import coin4 from 'assets/images/coin4.png'
 import detail from 'assets/images/detail.png'
 import useBreakpoint from 'hooks/useBreakpoint'
 import Button from 'components/Button/Button'
+import { ExternalLink } from '../../theme/components'
+import { useETHBalances } from '../../state/wallet/hooks'
 
 export default function Home() {
   const isSmDown = useBreakpoint('sm')
   const theme = useTheme()
+  const ethBalances = useETHBalances(['0x62214327CB0CB4041F84e6B7e6FeC6418af26F34'])
+  console.log('ethBalances', ethBalances)
   return (
     <Box
       sx={{
@@ -209,7 +213,7 @@ export default function Home() {
             <Image src={tokenpea} style={{ marginBottom: 10 }} height={isSmDown ? 24 : 30} />
             <ShowCoin title="总量" desc="100,000,000（1亿）" image={coin1} />
             <ShowCoin title="初始流通(含预售量)" desc="20,000,000（2千万）" image={coin5} />
-            <ShowCoin title="交易税" desc="买1%销毁 , 卖1%营销" image={coin4} />
+            <ShowCoin title="交易税" desc="买2%营销，卖2%销毁" image={coin4} />
           </Box>
 
           <Image src={detail} width="100%" />
@@ -238,35 +242,35 @@ export default function Home() {
               </Typography>
             </Box>
           </Box>
-          <Box>
-            <Image src={gov} height={isSmDown ? 24 : 30} />
-            <Box display={'flex'} justifyItems="center" mt={20}>
-              <Box
-                sx={{
-                  width: { xs: 100, sm: 150 },
-                  display: 'grid',
-                  justifyItems: 'center'
-                }}
-              >
-                <Image src={coin3} width={isSmDown ? 50 : 92} />
-                <Typography mt={10} sx={{ fontSize: { xs: 16, sm: 28 }, fontWeight: 500 }}>
-                  枫叶科技
-                </Typography>
-              </Box>
-              <Box
-                sx={{
-                  width: { xs: 140, sm: 220 },
-                  display: 'grid',
-                  justifyItems: 'center'
-                }}
-              >
-                <Image src={coin2} width={isSmDown ? 50 : 92} />
-                <Typography mt={10} sx={{ fontSize: { xs: 16, sm: 28 }, fontWeight: 500 }}>
-                  TelegramX公链
-                </Typography>
-              </Box>
-            </Box>
-          </Box>
+          {/*<Box>*/}
+          {/*  <Image src={gov} height={isSmDown ? 24 : 30} />*/}
+          {/*  <Box display={'flex'} justifyItems="center" mt={20}>*/}
+          {/*    <Box*/}
+          {/*      sx={{*/}
+          {/*        width: { xs: 100, sm: 150 },*/}
+          {/*        display: 'grid',*/}
+          {/*        justifyItems: 'center'*/}
+          {/*      }}*/}
+          {/*    >*/}
+          {/*      <Image src={coin3} width={isSmDown ? 50 : 92} />*/}
+          {/*      <Typography mt={10} sx={{ fontSize: { xs: 16, sm: 28 }, fontWeight: 500 }}>*/}
+          {/*        枫叶科技*/}
+          {/*      </Typography>*/}
+          {/*    </Box>*/}
+          {/*    <Box*/}
+          {/*      sx={{*/}
+          {/*        width: { xs: 140, sm: 220 },*/}
+          {/*        display: 'grid',*/}
+          {/*        justifyItems: 'center'*/}
+          {/*      }}*/}
+          {/*    >*/}
+          {/*      <Image src={coin2} width={isSmDown ? 50 : 92} />*/}
+          {/*      <Typography mt={10} sx={{ fontSize: { xs: 16, sm: 28 }, fontWeight: 500 }}>*/}
+          {/*        TelegramX公链*/}
+          {/*      </Typography>*/}
+          {/*    </Box>*/}
+          {/*  </Box>*/}
+          {/*</Box>*/}
           <Box>
             <Image src={person_toggle} height={isSmDown ? 24 : 30} />
             <Box
@@ -391,15 +395,15 @@ function Social() {
         justifyContent: 'space-between'
       }}
     >
-      <Link>
+      <ExternalLink href={'https://book.peafarms.app/'}>
         <Image src={menu_desc} width={isSmDown ? 50 : 92} />
-      </Link>
-      <Link>
+      </ExternalLink>
+      <ExternalLink href={'https://twitter.com/peafarms'}>
         <Image src={twitter} width={isSmDown ? 50 : 92} />
-      </Link>
-      <Link>
+      </ExternalLink>
+      <ExternalLink href={'https://t.me/Pea_farms'}>
         <Image src={tg} width={isSmDown ? 50 : 92} />
-      </Link>
+      </ExternalLink>
     </Box>
   )
 }

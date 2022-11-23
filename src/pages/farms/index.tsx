@@ -166,7 +166,7 @@ function PoolBox({ farm }: { farm: FARM }) {
   const lpToken = useToken(farm.lpAddress, chainId)
   const [depositTyped] = useState('1')
   const depositAmount = tryParseAmount(depositTyped, lpToken ?? undefined)
-  const [approvalState, approveCallback] = useApproveCallback(depositAmount, FARM_ADDRESS[chainId ?? 56])
+  const [approvalState, approveCallback] = useApproveCallback(depositAmount, FARM_ADDRESS[chainId ?? 8989])
 
   const claimCallback = useCallback(async () => {
     showModal(<TransactionPendingModal />)

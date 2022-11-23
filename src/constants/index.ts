@@ -8,8 +8,7 @@ import { ChainId } from './chain'
 export const MIN_ETH: JSBI = JSBI.exponentiate(JSBI.BigInt(10), JSBI.BigInt(16)) // .01 ETH
 
 export const BAST_TOKEN: { [chainId in ChainId]: Token } = {
-  [ChainId.BSC]: new Token(ChainId.BSC, '0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D', 18, 'MATTER', 'Matter'),
-  [ChainId.BSCTEST]: new Token(ChainId.BSCTEST, '0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D', 18, 'MATTER', 'Matter')
+  [ChainId.TX]: new Token(ChainId.TX, '0xbfC7439df802D3F941cFc20539F7130cDb06e64b', 18, 'PEA', 'PEA')
 }
 
 export const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000'
@@ -106,14 +105,10 @@ export const BLOCKED_ADDRESSES: string[] = [
   '0x8576aCC5C05D6Ce88f4e49bf65BdF0C62F91353C'
 ]
 
-export const RAM_ADDRESS = '0x9edd5c6892Bb3AAeAe2E29d3917EFD5C0C44d0e1'
-export const USDT_ADDRESS = '0x8d9c2fb248e54b9F5E0d2A3ffBD7393f108efaDD'
 export const USDT: { [chainId in ChainId]: Token } = {
-  [ChainId.BSC]: new Token(ChainId.BSC, '0x55d398326f99059fF775485246999027B3197955', 18, 'USDT', 'USDT'),
-  [ChainId.BSCTEST]: new Token(ChainId.BSCTEST, USDT_ADDRESS, 18, 'USDT', 'USDT')
+  [ChainId.TX]: new Token(ChainId.TX, '0x58a12868Eec1ba590cB289472b871029CC77FB7c', 18, 'USDT', 'USDT')
 }
 
 export const FARM_ADDRESS: { [chainId in ChainId]: string } = {
-  [ChainId.BSC]: '0x1954A0c799E537C32229C5600C3892eFb2413a19',
-  [ChainId.BSCTEST]: '0x1954A0c799E537C32229C5600C3892eFb2413a19'
+  [ChainId.TX]: '0x569CD8Db162eC15B947e2a45BB5Dc671DfDe9d00'
 }

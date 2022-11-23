@@ -9,6 +9,5 @@ export interface FARM {
   token1Name: string
 }
 export const FARMS: { [chainId in ChainId]: FARM[] } = {
-  [ChainId.BSCTEST]: farms,
-  [ChainId.BSC]: farms
+  [ChainId.TX]: farms
 }
