@@ -26,7 +26,8 @@ import TransactionPendingModal from '../../components/Modal/TransactionModals/Tr
 import TransactionSubmittedModal from '../../components/Modal/TransactionModals/TransactiontionSubmittedModal'
 import MessageBox from '../../components/Modal/TransactionModals/MessageBox'
 import { ExternalLink } from '../../theme/components'
-import { useTVL } from '../../hooks/useLiquidity'
+import { useTVL, useTVLs } from '../../hooks/useLiquidity'
+import JSBI from 'jsbi'
 
 // const Wrapper = styled(Box)`
 //   border: 2px solid #191919;
@@ -112,6 +113,9 @@ const StyledLink = styled(Link)(({ theme }) => ({
 export default function Farms() {
   const isSmDown = useBreakpoint('sm')
   const farms = useFarmInfos()
+  const tvls = useTVLs()
+  const totalTVL = [...tvls, 0].map(i => JSBI.BigInt(i ?? '0')).reduce((a, b) => JSBI.add(a, b))
+
   return (
     <Box
       sx={{
@@ -145,18 +149,18 @@ export default function Farms() {
               fontSize: { xs: 30, sm: 58 }
             }}
           >
-            --
+            ${CurrencyAmount.ether(totalTVL).toSignificant()}
           </Typography>
         </Box>
-        {farms.map(farm => {
-          return <PoolBox key={farm.lpAddress} farm={farm} />
+        {farms.map((farm, index) => {
+          return <PoolBox key={farm.lpAddress} farm={farm} tvl={tvls[index]?.toString()} />
         })}
       </Stack>
     </Box>
   )
 }
 
-function PoolBox({ farm }: { farm: FARM }) {
+function PoolBox({ farm, tvl }: { farm: FARM; tvl: string | undefined }) {
   const { chainId, account } = useActiveWeb3React()
   const isSmDown = useBreakpoint('sm')
   const [openStake, setOpenStake] = useState(false)
@@ -165,14 +169,7 @@ function PoolBox({ farm }: { farm: FARM }) {
   const { pendingRewards, depositedAmount, claimedAmount } = useUserInfo(farm)
   const { showModal, hideModal } = useModal()
   const { claim } = useAuctions()
-  const token0Address = farm.token0Address.toLowerCase() < farm.token1Address ? farm.token0Address : farm.token1Address
-  const token1Address = farm.token0Address.toLowerCase() < farm.token1Address ? farm.token1Address : farm.token0Address
-  const { tvl, token0Amount, token1Amount } = useTVL(
-    depositedAmount ?? '0',
-    farm.lpAddress,
-    token0Address,
-    token1Address
-  )
+  const { token0Amount, token1Amount } = useTVL(depositedAmount ?? '0', farm.lpAddress)
   const lpToken = useToken(farm.lpAddress, chainId)
   const [depositTyped] = useState('1')
   const depositAmount = tryParseAmount(depositTyped, lpToken ?? undefined)
