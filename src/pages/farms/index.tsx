@@ -425,11 +425,6 @@ function PoolBox({
                   查看合约 <Image src={share} width={isSmDown ? 16 : 24} style={{ marginLeft: 5 }} />
                 </StyledLink>
               </ExternalLink>
-              <ExternalLink href={`https://www.telegramx.link/address/${farm.lpAddress}`}>
-                <StyledLink>
-                  查看代币对信息 <Image src={share} width={isSmDown ? 16 : 24} style={{ marginLeft: 5 }} />
-                </StyledLink>
-              </ExternalLink>
             </Stack>
           </Stack>
         </Box>
