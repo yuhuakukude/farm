@@ -6,12 +6,22 @@ import { useCallback } from 'react'
 import { calculateGasMargin } from '../utils'
 import { TransactionResponse } from '@ethersproject/providers'
 import { TokenAmount } from '../constants/token'
-import { useSingleCallResult } from '../state/multicall/hooks'
+import { useSingleCallResult, useSingleContractMultipleData } from '../state/multicall/hooks'
+import JSBI from 'jsbi'
 
 function useFarmInfos() {
   const { chainId } = useActiveWeb3React()
   const farms = FARMS[chainId ?? 8989]
-  return farms.map(farm => {
+  const contract = useFarmContract()
+  const pools = useSingleContractMultipleData(contract, 'poolInfos', [['0'], ['1'], ['2']])
+  const totalAllocPoint = useSingleCallResult(contract, 'totalAllocPoint')?.result?.[0]
+  const peaCount = useSingleCallResult(contract, 'peaPerBlock')?.result?.[0]
+  return farms.map((farm, index) => {
+    const point = pools[index]?.result?.allocPoint
+    farm.x =
+      point && totalAllocPoint && peaCount
+        ? JSBI.divide(JSBI.multiply(JSBI.BigInt(peaCount), JSBI.BigInt(point)), JSBI.BigInt(totalAllocPoint)).toString()
+        : '0'
     return farm
   })
 }

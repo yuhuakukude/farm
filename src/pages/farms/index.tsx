@@ -113,9 +113,8 @@ const StyledLink = styled(Link)(({ theme }) => ({
 export default function Farms() {
   const isSmDown = useBreakpoint('sm')
   const farms = useFarmInfos()
-  const tvls = useTVLs()
-  const totalTVL = [...tvls, 0].map(i => JSBI.BigInt(i ?? '0')).reduce((a, b) => JSBI.add(a, b))
-
+  const { tvls, peaPrice } = useTVLs()
+  const totalTVL = [...tvls.map(({ tvl }) => tvl), 0].map(i => JSBI.BigInt(i ?? '0')).reduce((a, b) => JSBI.add(a, b))
   return (
     <Box
       sx={{
@@ -153,14 +152,28 @@ export default function Farms() {
           </Typography>
         </Box>
         {farms.map((farm, index) => {
-          return <PoolBox key={farm.lpAddress} farm={farm} tvl={tvls[index]?.toString()} />
+          return <PoolBox key={farm.lpAddress} peaPrice={peaPrice} liquidity={tvls[index]} farm={farm} />
         })}
       </Stack>
     </Box>
   )
 }
 
-function PoolBox({ farm, tvl }: { farm: FARM; tvl: string | undefined }) {
+interface LIQUIDITY {
+  tvl?: string | undefined
+  lpPrice?: string | undefined
+  balance?: string | undefined
+}
+
+function PoolBox({
+  farm,
+  liquidity,
+  peaPrice
+}: {
+  farm: FARM
+  liquidity: LIQUIDITY | undefined
+  peaPrice: string | undefined
+}) {
   const { chainId, account } = useActiveWeb3React()
   const isSmDown = useBreakpoint('sm')
   const [openStake, setOpenStake] = useState(false)
@@ -174,6 +187,25 @@ function PoolBox({ farm, tvl }: { farm: FARM; tvl: string | undefined }) {
   const [depositTyped] = useState('1')
   const depositAmount = tryParseAmount(depositTyped, lpToken ?? undefined)
   const [approvalState, approveCallback] = useApproveCallback(depositAmount, FARM_ADDRESS[chainId ?? 8989])
+  const balance = liquidity?.balance
+  const lpPrice = liquidity?.lpPrice
+  const x = farm?.x
+
+  const apy =
+    balance &&
+    x &&
+    peaPrice &&
+    lpPrice &&
+    JSBI.greaterThan(JSBI.BigInt(balance), JSBI.BigInt('0')) &&
+    JSBI.greaterThan(JSBI.BigInt(lpPrice), JSBI.BigInt('0'))
+      ? JSBI.divide(
+          JSBI.multiply(
+            JSBI.multiply(JSBI.multiply(JSBI.BigInt(x), JSBI.BigInt('10512000')), JSBI.BigInt(peaPrice)),
+            JSBI.BigInt('100000000000000000000')
+          ),
+          JSBI.multiply(JSBI.BigInt(balance), JSBI.BigInt(lpPrice))
+        )
+      : undefined
 
   const claimCallback = useCallback(async () => {
     showModal(<TransactionPendingModal />)
@@ -236,7 +268,7 @@ function PoolBox({ farm, tvl }: { farm: FARM; tvl: string | undefined }) {
               </Box>
               <Box>
                 <Text1>APR</Text1>
-                <Text2 mt={10}>--%</Text2>
+                <Text2 mt={10}>{apy ? CurrencyAmount.ether(apy).toSignificant() : '--'}%</Text2>
               </Box>
             </Box>
           </StyledBetweenCenter>
@@ -380,7 +412,7 @@ function PoolBox({ farm, tvl }: { farm: FARM; tvl: string | undefined }) {
               </StyledBetweenCenter>
               <StyledBetweenCenter>
                 <Text2>流动性</Text2>
-                <Text2>${tvl ? CurrencyAmount.ether(tvl).toSignificant() : '--'}</Text2>
+                <Text2>${liquidity?.tvl ? CurrencyAmount.ether(liquidity?.tvl).toSignificant() : '--'}</Text2>
               </StyledBetweenCenter>
               <ExternalLink href={`https://swap.telegramx.link/#/add/${farm.token0Address}/${farm.token1Address}`}>
                 <StyledLink>
