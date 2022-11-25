@@ -1,8 +1,8 @@
 [
   {
     "index": "0",
-    "lpAddress": "0x7fbfede74e5f35d36445ce632a7a70f888b902da",
-    "token0Address": "0xbfC7439df802D3F941cFc20539F7130cDb06e64b",
+    "lpAddress": "0x2b91ad897ca2a2b50cd563f4322b429b605db49f",
+    "token0Address": "0x981D336c5152b916B74D6697382a177D75974bF8",
     "token1Address": "0x68909Fea4ca0e80247da6b974c10f225696e00D6",
     "token0Name": "PEA",
     "token1Name": "WTX",
@@ -10,11 +10,11 @@
   },
   {
     "index": "1",
-    "lpAddress": "0x91bc08a809c0b0817ecb515d942fafb90797877a",
-    "token0Address": "0xbfC7439df802D3F941cFc20539F7130cDb06e64b",
-    "token1Address": "0x58a12868Eec1ba590cB289472b871029CC77FB7c",
+    "lpAddress": "0x96b0809f2aa0b0ae6e379d36c2254151a0b1c2a2",
+    "token0Address": "0xa8210fc1387c26230598d056f01e19eaa9ffffff",
+    "token1Address": "0x981D336c5152b916B74D6697382a177D75974bF8",
     "token0Name": "PEA",
-    "token1Name": "USTX",
+    "token1Name": "USDT",
     "weights": "400"
 
   },
@@ -22,9 +22,9 @@
     "index": "2",
     "lpAddress": "0x952259a93fec93628b84c96983a1fbf98ad49958",
     "token0Address": "0x68909Fea4ca0e80247da6b974c10f225696e00D6",
-    "token1Address": "0x58a12868Eec1ba590cB289472b871029CC77FB7c",
+    "token1Address": "0xa8210fc1387c26230598d056f01e19eaa9ffffff",
     "token0Name": "WTX",
-    "token1Name": "USTX",
+    "token1Name": "USDT",
     "weights": "100"
 
   }

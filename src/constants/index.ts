@@ -106,9 +106,9 @@ export const BLOCKED_ADDRESSES: string[] = [
 ]
 
 export const USDT: { [chainId in ChainId]: Token } = {
-  [ChainId.TX]: new Token(ChainId.TX, '0x58a12868Eec1ba590cB289472b871029CC77FB7c', 18, 'USDT', 'USDT')
+  [ChainId.TX]: new Token(ChainId.TX, '0xa8210fc1387c26230598d056f01e19eaa9ffffff', 18, 'USDT', 'USDT')
 }
 
 export const FARM_ADDRESS: { [chainId in ChainId]: string } = {
-  [ChainId.TX]: '0x569CD8Db162eC15B947e2a45BB5Dc671DfDe9d00'
+  [ChainId.TX]: '0x4a874720427662655Fd9a62Fd83A997E6663C2Ff'
 }
