@@ -147,9 +147,9 @@ export default function Home() {
                   sx={{ fontSize: { sx: 16, sm: 26 }, fontWeight: 500, color: theme.palette.text.secondary }}
                   ml={6}
                 >
-                  swap跳转：
-                  <Link sx={{ fontSize: { sx: 16, sm: 26 } }} href="https://txswap.maplesales.org/">
-                    https://txswap.maplesales.org/
+                  MapleDex：
+                  <Link sx={{ fontSize: { sx: 16, sm: 26 } }} href="https://swap.maplesales.org/liquidity?chainId=8989">
+                    https://swap.maplesales.org
                   </Link>
                 </Typography>
               </Box>
@@ -364,20 +364,22 @@ function ChainInfo() {
           >
             {item.title}
           </Typography>
-          <Button
-            onClick={() => {
-              setCopied(item.value)
-            }}
-            style={{
-              height: 33,
-              width: 60,
-              marginLeft: 'auto',
-              marginRight: '0'
-            }}
-            classname="global-box-shadow"
-          >
-            复制
-          </Button>
+          {item.value !== 'TX' && (
+            <Button
+              onClick={() => {
+                setCopied(item.value)
+              }}
+              style={{
+                height: 33,
+                width: 60,
+                marginLeft: 'auto',
+                marginRight: '0'
+              }}
+              classname="global-box-shadow"
+            >
+              复制
+            </Button>
+          )}
         </Box>
       ))}
     </Stack>

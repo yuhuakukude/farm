@@ -37,7 +37,7 @@ export function useTabs(): Tab[] {
   return [
     { title: '简介', route: routes.home, image: logo1 },
     { title: '农场', route: routes.farms, image: farm },
-    { title: '农场', route: routes.club, image: club }
+    { title: '俱乐部', route: routes.club, image: club }
     // { title: t('marketplace'), route: routes.Marketplace, id: 'marketplace' },
     // { title: t('roadmap.title'), route: routes.Roadmap, id: 'roadmap' },
     // { title: t('tokenomics1'), route: routes.Tokenomics, id: 'tokenomics' },
