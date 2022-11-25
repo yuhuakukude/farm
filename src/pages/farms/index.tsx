@@ -416,7 +416,7 @@ function PoolBox({
               </StyledBetweenCenter>
               <ExternalLink href={`https://swap.telegramx.link/#/add/${farm.token0Address}/${farm.token1Address}`}>
                 <StyledLink>
-                  获取PEA-USTX LP
+                  获取{farm.token0Name}-{farm.token1Name} LP
                   <Image src={share} width={isSmDown ? 16 : 24} style={{ marginLeft: 5 }} />
                 </StyledLink>
               </ExternalLink>
