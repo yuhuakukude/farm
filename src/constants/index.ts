@@ -110,5 +110,5 @@ export const USDT: { [chainId in ChainId]: Token } = {
 }
 
 export const FARM_ADDRESS: { [chainId in ChainId]: string } = {
-  [ChainId.TX]: '0x4a874720427662655Fd9a62Fd83A997E6663C2Ff'
+  [ChainId.TX]: '0xfccf0B208a958310aFEeFBd817ACC30D8cEDa575'
 }

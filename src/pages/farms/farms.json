@@ -3,7 +3,7 @@
     "index": "0",
     "lpAddress": "0xe6c0835725591522f7dc4813f784786b7720f067",
     "token0Address": "0xa8210fc1387c26230598d056f01e19eaa9ffffff",
-    "token1Address": "0x981D336c5152b916B74D6697382a177D75974bF8",
+    "token1Address": "0xd406D5A414419B43d54444b11e894711108CB0d9",
     "token0Name": "PEA",
     "token1Name": "USDT",
     "weights": "400"
@@ -12,7 +12,7 @@
   {
       "index": "1",
       "lpAddress": "0x2b91ad897ca2a2b50cd563f4322b429b605db49f",
-      "token0Address": "0x981D336c5152b916B74D6697382a177D75974bF8",
+      "token0Address": "0xd406D5A414419B43d54444b11e894711108CB0d9",
       "token1Address": "0x68909Fea4ca0e80247da6b974c10f225696e00D6",
       "token0Name": "PEA",
       "token1Name": "WTX",
