@@ -340,7 +340,7 @@ function PoolBox({
               </OutBox>
             ) : null}
 
-            {!depositAmount || depositedAmount === '0' ? (
+            {!depositedAmount || depositedAmount === '0' ? (
               <OutBox>
                 <Text1 mb={isSmDown ? 15 : 30}>
                   质押
