@@ -122,15 +122,15 @@ export default function MobileMenu({ isOpen, onDismiss }: { isOpen: boolean; onD
           justifyContent: 'space-between'
         }}
       >
-        <Link>
+        <ExternalLink href={'https://book.peafarms.app/'}>
           <Image src={menu_desc} width={isSmDown ? 30 : 50} />
-        </Link>
-        <Link>
+        </ExternalLink>
+        <ExternalLink href={'https://twitter.com/peafarms'}>
           <Image src={twitter} width={isSmDown ? 30 : 50} />
-        </Link>
-        <Link>
+        </ExternalLink>
+        <ExternalLink href={'https://t.me/Pea_farms'}>
           <Image src={tg} width={isSmDown ? 30 : 50} />
-        </Link>
+        </ExternalLink>
       </Box>
     </Drawer>
   )

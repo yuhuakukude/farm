@@ -403,10 +403,6 @@ function PoolBox({
 
             <Stack spacing={isSmDown ? 10 : 15}>
               <StyledBetweenCenter>
-                <Text2>APR</Text2>
-                <Text2>--%</Text2>
-              </StyledBetweenCenter>
-              <StyledBetweenCenter>
                 <Text2>权重</Text2>
                 <Text2>{farm.weights}X</Text2>
               </StyledBetweenCenter>
@@ -414,7 +410,7 @@ function PoolBox({
                 <Text2>流动性</Text2>
                 <Text2>${liquidity?.tvl ? CurrencyAmount.ether(liquidity?.tvl).toSignificant() : '--'}</Text2>
               </StyledBetweenCenter>
-              <ExternalLink href={`https://swap.telegramx.link/#/add/${farm.token0Address}/${farm.token1Address}`}>
+              <ExternalLink href={`https://l.peafarms.app/#/add/${farm.token0Address}/${farm.token1Address}`}>
                 <StyledLink>
                   获取{farm.token0Name}-{farm.token1Name} LP
                   <Image src={share} width={isSmDown ? 16 : 24} style={{ marginLeft: 5 }} />

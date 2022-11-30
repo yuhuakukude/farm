@@ -86,10 +86,6 @@ export default function StakeModal({
               </Text2>
             </StyledBetweenCenter>
           </OutBox>
-          <StyledBetweenCenter>
-            <Text2 style={{ color: '#666666' }}>当前汇率下的年度投资回报率：</Text2>
-            <Text2>$--</Text2>
-          </StyledBetweenCenter>
           <Stack spacing={15} direction={'row'}>
             {presents.map(value => {
               return (
