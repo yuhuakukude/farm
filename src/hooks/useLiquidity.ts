@@ -34,10 +34,10 @@ let peaPrice: string | undefined = undefined
 function useTVLs() {
   const ONE_AMOUNT = JSBI.BigInt('1000000000000000000')
   const BASE_PAIR_ADDRESS = '0x96b0809f2aa0b0ae6e379d36c2254151a0b1c2a2'
-  const PU_PAIR_ADDRESS = '0xe6c0835725591522f7dc4813f784786b7720f067'
+  const PU_PAIR_ADDRESS = '0xA38d53bA758A656C3D7004b1f2C6278124270261'
   const WTX = '0x68909Fea4ca0e80247da6b974c10f225696e00D6'
   const USTX = '0xa8210fc1387c26230598d056f01e19eaa9ffffff'
-  const PEA = '0x981D336c5152b916B74D6697382a177D75974bF8'
+  const PEA = '0xd406D5A414419B43d54444b11e894711108CB0d9'
   const { library } = useActiveWeb3React()
   const pairAddress = farms.map(({ lpAddress }) => lpAddress)
   const WUContract = library ? getContract(BASE_PAIR_ADDRESS, LPABI, library) : undefined
@@ -47,7 +47,7 @@ function useTVLs() {
   const reserveE = USTX.toLowerCase() > WTX.toLowerCase() ? WUReserve?._reserve0 : WUReserve?._reserve1
   const reserves = useMultipleContractSingleData(pairAddress, LP_INTERFACE, 'getReserves')
   const balances = useMultipleContractSingleData(pairAddress, LP_INTERFACE, 'balanceOf', [
-    '0x4a874720427662655Fd9a62Fd83A997E6663C2Ff'
+    '0xfccf0B208a958310aFEeFBd817ACC30D8cEDa575'
   ])
   const totalSupply = useMultipleContractSingleData(pairAddress, LP_INTERFACE, 'totalSupply')
   const tvls = useMemo(() => {
