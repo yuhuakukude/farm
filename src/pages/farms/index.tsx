@@ -372,13 +372,13 @@ function PoolBox({
                   <Box>
                     <Text1>
                       {token0Amount ? CurrencyAmount.ether(token0Amount).toSignificant() : '--'}
-                      {farm.token0Address.toLowerCase() > farm.token1Address.toLowerCase()
+                      {farm.token0Address.toLowerCase() < farm.token1Address.toLowerCase()
                         ? farm.token0Name
                         : farm.token1Name}
                     </Text1>
                     <Text1>
                       {token1Amount ? CurrencyAmount.ether(token1Amount).toSignificant() : '--'}
-                      {farm.token0Address.toLowerCase() < farm.token1Address.toLowerCase()
+                      {farm.token0Address.toLowerCase() > farm.token1Address.toLowerCase()
                         ? farm.token0Name
                         : farm.token1Name}
                     </Text1>

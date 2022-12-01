@@ -24,9 +24,9 @@ function useTVL(amount: string, pairAddress: string) {
   }, [amount, reserve0, totalSupply])
 
   const token1Amount = useMemo(() => {
-    if (!reserve0 || !totalSupply) return undefined
+    if (!reserve1 || !totalSupply) return undefined
     return JSBI.divide(JSBI.multiply(JSBI.BigInt(amount), JSBI.BigInt(reserve1)), JSBI.BigInt(totalSupply))
-  }, [amount, reserve0, reserve1, totalSupply])
+  }, [amount, reserve1, totalSupply])
   return { token0Amount, token1Amount }
 }
 let peaPrice: string | undefined = undefined

@@ -2,8 +2,8 @@
   {
     "index": "0",
     "lpAddress": "0xA38d53bA758A656C3D7004b1f2C6278124270261",
-    "token0Address": "0xa8210fc1387c26230598d056f01e19eaa9ffffff",
-    "token1Address": "0xd406D5A414419B43d54444b11e894711108CB0d9",
+    "token0Address": "0xd406D5A414419B43d54444b11e894711108CB0d9",
+    "token1Address": "0xa8210fc1387c26230598d056f01e19eaa9ffffff",
     "token0Name": "PEA",
     "token1Name": "USDT",
     "weights": "400"
