@@ -98,7 +98,8 @@ export default function NFT() {
                     backgroundSize: '100% 101%',
                     backgroundRepeat: 'no-repeat',
                     padding: '2px 8px 4px 2px',
-                    position: 'relative'
+                    position: 'relative',
+                    height: 'fit-content'
                   }}
                 >
                   <Image
