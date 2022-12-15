@@ -19,6 +19,7 @@ import { useNFT } from '../../hooks/useNFT'
 import useModal from '../../hooks/useModal'
 import nftBG from '../../assets/images/nft_bg.png'
 import save from '../../assets/images/save.png'
+import JSBI from 'jsbi'
 
 export default function NFT() {
   const payAmount = tryParseAmount('8000', PEA[8989])
@@ -117,7 +118,7 @@ export default function NFT() {
                     borderRadius: '0 5px 5px 0'
                   }}
                 >
-                  编号 &nbsp;{value}
+                  编号 &nbsp;{JSBI.ADD(JSBI.BigInt(value), JSBI.BigInt(1))}
                 </Typography>
               </Stack>
             </Grid>
