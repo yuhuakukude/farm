@@ -46,10 +46,12 @@ export default function NFT() {
 
   return (
     <Box paddingBottom={30}>
-      <Stack sx={{ width: '100%', alignItems: 'center', marginTop: 30, paddingBottom: 40 }}>
+      <Stack sx={{ width: '100%', alignItems: 'center', marginTop: 30, paddingBottom: 0 }}>
         <Image src={titleImg} height={36} style={{ margin: 'auto' }} />
       </Stack>
-      <Image src={headerImg} style={{ margin: 30, overflow: 'hidden' }} />
+      <Box sx={{ padding: 30 }}>
+        <Image src={headerImg} style={{ overflow: 'hidden', width: '100%' }} />
+      </Box>
       <Image height={24} src={textImg} style={{ margin: 30 }} />
       <Stack margin={30} direction={'row'} alignItems={'center'} spacing={10}>
         <Image height={24} src={num1} />
