@@ -103,11 +103,11 @@ export default function NFT() {
                   }}
                 >
                   <Image
-                    style={{ borderRadius: '10px', height: 'fit-content', objectFit: 'contain' }}
+                    style={{ borderRadius: '10px', width: '100%', objectFit: 'contain' }}
                     src={`https://gateway.pinata.cloud/ipfs/bafybeieorpxjvnifejdszn2r7lee23ddpiom6fcte2b2yh2gkraox2qyki/${value}.png`}
                   />
                   <IconButton
-                    sx={{ width: 'fit-content', alignSelf: 'end', marginBottom: 20 }}
+                    sx={{ width: 'fit-content', alignSelf: 'flex-end', marginBottom: 20 }}
                     onClick={() => {
                       window.open(
                         `https://gateway.pinata.cloud/ipfs/bafybeieorpxjvnifejdszn2r7lee23ddpiom6fcte2b2yh2gkraox2qyki/${value}.png`,
