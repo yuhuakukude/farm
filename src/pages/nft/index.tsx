@@ -45,7 +45,7 @@ export default function NFT() {
   }, [hideModal, mint, showModal])
 
   return (
-    <Box>
+    <Box paddingBottom={30}>
       <Stack sx={{ width: '100%', alignItems: 'center', marginTop: 30, paddingBottom: 40 }}>
         <Image src={titleImg} height={36} style={{ margin: 'auto' }} />
       </Stack>
@@ -72,7 +72,7 @@ export default function NFT() {
       <Stack margin={30} direction={'row'} alignItems={'center'} spacing={10}>
         <Image height={24} src={num4} />
         <Typography fontSize={18} fontWeight={500}>
-          其他福利随时增加%分红
+          其他福利随时增加
         </Typography>
       </Stack>
       <IconButton
