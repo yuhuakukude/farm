@@ -19,6 +19,7 @@ import { useNFT } from '../../hooks/useNFT'
 import useModal from '../../hooks/useModal'
 import nftBG from '../../assets/images/nft_bg.png'
 import save from '../../assets/images/save.png'
+import myNFT from '../../assets/images/my_nft.png'
 import JSBI from 'jsbi'
 
 export default function NFT() {
@@ -80,6 +81,7 @@ export default function NFT() {
       >
         <Image width={'100%'} src={mint_btn} />
       </IconButton>
+      <Image style={{ height: 20, margin: 20 }} src={myNFT} />
       <Grid container spacing={20}>
         {nfts.map(value => {
           return (
