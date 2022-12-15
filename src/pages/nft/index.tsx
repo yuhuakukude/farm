@@ -83,49 +83,53 @@ export default function NFT() {
       </IconButton>
       <Image style={{ height: 20, margin: 20 }} src={myNFT} />
       <Grid container spacing={20}>
-        {nfts.map(value => {
-          return (
-            <Grid key={value} item xs={6}>
-              <Stack
-                sx={{
-                  background: `url(${nftBG})`,
-                  backgroundSize: '100% 101%',
-                  backgroundRepeat: 'no-repeat',
-                  padding: '2px 8px 4px 2px',
-                  position: 'relative'
-                }}
-              >
-                <Image
-                  style={{ borderRadius: '10px' }}
-                  src={`https://gateway.pinata.cloud/ipfs/bafybeieorpxjvnifejdszn2r7lee23ddpiom6fcte2b2yh2gkraox2qyki/${value}.png`}
-                />
-                <IconButton
-                  sx={{ width: 'fit-content', alignSelf: 'end', marginBottom: 20 }}
-                  onClick={() => {
-                    window.open(
-                      `https://gateway.pinata.cloud/ipfs/bafybeieorpxjvnifejdszn2r7lee23ddpiom6fcte2b2yh2gkraox2qyki/${value}.png`,
-                      '_blank'
-                    )
-                  }}
-                >
-                  <Image height={30} src={save} />
-                </IconButton>
-                <Typography
+        {nfts
+          .filter(value => {
+            return !!value
+          })
+          .map(value => {
+            return (
+              <Grid key={value} item xs={6}>
+                <Stack
                   sx={{
-                    bottom: 55,
-                    position: 'absolute',
-                    backgroundColor: 'black',
-                    color: 'white',
-                    padding: '10px 20px',
-                    borderRadius: '0 5px 5px 0'
+                    background: `url(${nftBG})`,
+                    backgroundSize: '100% 101%',
+                    backgroundRepeat: 'no-repeat',
+                    padding: '2px 8px 4px 2px',
+                    position: 'relative'
                   }}
                 >
-                  编号 &nbsp;{JSBI.ADD(JSBI.BigInt(value), JSBI.BigInt(1))}
-                </Typography>
-              </Stack>
-            </Grid>
-          )
-        })}
+                  <Image
+                    style={{ borderRadius: '10px' }}
+                    src={`https://gateway.pinata.cloud/ipfs/bafybeieorpxjvnifejdszn2r7lee23ddpiom6fcte2b2yh2gkraox2qyki/${value}.png`}
+                  />
+                  <IconButton
+                    sx={{ width: 'fit-content', alignSelf: 'end', marginBottom: 20 }}
+                    onClick={() => {
+                      window.open(
+                        `https://gateway.pinata.cloud/ipfs/bafybeieorpxjvnifejdszn2r7lee23ddpiom6fcte2b2yh2gkraox2qyki/${value}.png`,
+                        '_blank'
+                      )
+                    }}
+                  >
+                    <Image height={30} src={save} />
+                  </IconButton>
+                  <Typography
+                    sx={{
+                      bottom: 55,
+                      position: 'absolute',
+                      backgroundColor: 'black',
+                      color: 'white',
+                      padding: '10px 20px',
+                      borderRadius: '0 5px 5px 0'
+                    }}
+                  >
+                    编号 &nbsp;{JSBI.ADD(JSBI.BigInt(value), JSBI.BigInt(1))}
+                  </Typography>
+                </Stack>
+              </Grid>
+            )
+          })}
       </Grid>
     </Box>
   )
