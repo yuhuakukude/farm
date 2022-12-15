@@ -12,7 +12,7 @@ import Home from './home'
 import bodyBg from 'assets/images/bodybg.png'
 import { routes } from 'constants/routes'
 import Farms from '../pages/farms'
-import ComingSoon from './ComingSoon'
+import NFT from './nft'
 // import Footer from 'components/Footer'
 
 const AppWrapper = styled('div')(({ theme }) => ({
@@ -67,7 +67,7 @@ export default function App() {
                   <Switch>
                     <Route exact strict path={routes.home} component={Home} />
                     <Route exact strict path={routes.farms} component={Farms} />
-                    <Route exact strict path={routes.club} component={ComingSoon} />
+                    <Route exact strict path={routes.club} component={NFT} />
                     <Route path="/">
                       <Redirect to="/home" />
                     </Route>

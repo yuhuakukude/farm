@@ -109,6 +109,12 @@ export const USDT: { [chainId in ChainId]: Token } = {
   [ChainId.TX]: new Token(ChainId.TX, '0xa8210fc1387c26230598d056f01e19eaa9ffffff', 18, 'USDT', 'USDT')
 }
 
+export const PEA: { [chainId in ChainId]: Token } = {
+  [ChainId.TX]: new Token(ChainId.TX, '0x7214649a754d068909fd76ba72a4c0D886189D7C', 18, 'PEA', 'PEA')
+}
+
 export const FARM_ADDRESS: { [chainId in ChainId]: string } = {
   [ChainId.TX]: '0xfccf0B208a958310aFEeFBd817ACC30D8cEDa575'
 }
+
+export const NFT_ADDRESS = '0xFa98387Eff6fb8a5010C42A56E27ff4Fba9d4A58'

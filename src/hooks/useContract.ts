@@ -13,7 +13,8 @@ import { ChainId } from '../constants/chain'
 import { getOtherNetworkLibrary } from 'connectors/MultiNetworkConnector'
 import ERC721_ABI from '../constants/abis/erc721.json'
 import FARM_ABI from '../constants/abis/farm.json'
-import { FARM_ADDRESS } from '../constants'
+import FARM_NFT_ABI from '../constants/abis/nft.json'
+import { FARM_ADDRESS, NFT_ADDRESS } from '../constants'
 
 // returns null on errors
 function useContract(
@@ -92,4 +93,8 @@ export function useNFTContract(address: string | undefined): Contract | null {
 export function useFarmContract(): Contract | null {
   const { chainId } = useActiveWeb3React()
   return useContract(FARM_ADDRESS[chainId ?? 8989], FARM_ABI, true)
+}
+
+export function useFarmNFTContract(): Contract | null {
+  return useContract(NFT_ADDRESS, FARM_NFT_ABI, true)
 }
