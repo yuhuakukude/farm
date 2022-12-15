@@ -102,7 +102,7 @@ export default function NFT() {
                   }}
                 >
                   <Image
-                    style={{ borderRadius: '10px' }}
+                    style={{ borderRadius: '10px', height: 'fit-content', objectFit: 'contain' }}
                     src={`https://gateway.pinata.cloud/ipfs/bafybeieorpxjvnifejdszn2r7lee23ddpiom6fcte2b2yh2gkraox2qyki/${value}.png`}
                   />
                   <IconButton
